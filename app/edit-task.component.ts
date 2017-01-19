@@ -15,11 +15,16 @@ import { Task } from './task.model';
     <input type="radio" [(ngModel)]="childSelectedTask.priority" [value]="1">1 (Low Priority)<br>
     <input type="radio" [(ngModel)]="childSelectedTask.priority" [value]="2">2 (Medium Priority)<br>
     <input type="radio" [(ngModel)]="childSelectedTask.priority" [value]="3">3 (Low Priority)
-    <button (click)="finishedEditing()">Done</button>
+    <button (click)="doneButtonClicked()">Done</button>
   </div>
   `
 })
 
 export class EditTaskComponent {
   @Input() childSelectedTask: Task;
+  @Output() doneButtonClickedSender = new EventEmitter();
+
+  doneButtonClicked() {
+    this.doneButtonClickedSender.emit();
+  }
 }
